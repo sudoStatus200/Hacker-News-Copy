@@ -6,6 +6,10 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const keys = require('../../config/key');
 const passport = require('passport');
+
+
+
+
 const validateRegisterInput = require('../../validation/registerValid');
 const validateLoginInput = require('../../validation/loginValidation');
 
@@ -22,11 +26,15 @@ router.get('/test',(req,res)=> res.json({message:"Test API works"}));
 
 router.post('/register',(req,res)=>{
 
+
    const { errors, isValid } = validateRegisterInput(req.body);
 
    if(!isValid){
-    return  res.status(400).json(errors);
-   }
+    
+
+return  res.status(400).json(errors);
+ 
+  }
 
   User.findOne({email:req.body.email})
       .then(user=>{
